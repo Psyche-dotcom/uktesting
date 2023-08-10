@@ -31,6 +31,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Deutsch
             </MenuItem>
@@ -40,6 +41,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Español
             </MenuItem>
@@ -49,6 +51,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Français
             </MenuItem>
@@ -58,6 +61,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               日本語
             </MenuItem>
@@ -67,6 +71,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Dutch
             </MenuItem>
@@ -76,6 +81,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Português
             </MenuItem>
@@ -85,6 +91,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Русский
             </MenuItem>
@@ -96,6 +103,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               English
             </MenuItem>
@@ -105,6 +113,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Suomi
             </MenuItem>
@@ -114,6 +123,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Italiano
             </MenuItem>
@@ -123,6 +133,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               한국어
             </MenuItem>
@@ -132,6 +143,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Norsk
             </MenuItem>
@@ -141,6 +153,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Română
             </MenuItem>
@@ -150,6 +163,7 @@ function CustomDropdown({ onClose }) {
                 width={24}
                 height={24}
                 className="mr-2"
+                alt="Country icon"
               />
               Svenska
             </MenuItem>

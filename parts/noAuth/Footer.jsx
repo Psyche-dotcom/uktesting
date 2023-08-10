@@ -53,7 +53,7 @@ export default function Footer() {
           <Link href="/">Terms & Conditions</Link>
         </div>
         <div className="border-r-2 border-gray-500 pr-2">
-          <Link href="/">Blog</Link>
+          <Link href="/Blog">Blog</Link>
         </div>
         <div className="border-r-2 border-gray-500 pr-2">
           <Link href="/">Privacy & Cookies</Link>

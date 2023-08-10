@@ -3,10 +3,20 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import CustomModal from "./CustomModal";
 import { useState } from "react";
 import Link from "next/link";
+import useSWR from "swr";
+import { fetcher } from "@/service/apiCalls/Fetcher";
 
-import PurchaseTime from "./PurchaseTime";
+import PurchaseTime from "./ForgotPasswordMail";
+import PurchaseTimeModal from "./PurchaseTimeModal";
+// const fetcher = async () => {
+//   const response = await fetch();
+//   const data = await response.json();
+//   return data;
+// };
 
 function BalanceDropDown({ onClose }) {
+  // const { data, error } = useSWR("/api/data1", fetcher);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [balanceModal, setBalanceModal] = useState(false);
 
@@ -21,10 +31,8 @@ function BalanceDropDown({ onClose }) {
     setBalanceModal(true);
     setAnchorEl(null);
   };
-  const handleChildValue = (value) => {
+  const handleValueChange = (value) => {
     setBalanceModal(value);
-    // Do something with the value received from the child
-    console.log("Value received from Child:", value);
   };
 
   return (
@@ -40,12 +48,13 @@ function BalanceDropDown({ onClose }) {
       >
         <div>
           <MenuItem onClick={handleClose}>0 minutes</MenuItem>
+          {/* <MenuItem onClick={handleClose}>{data.Time} minutes</MenuItem> */}
           <MenuItem className="text-pink" onClick={showMinuteModal}>
             Buy minutes
           </MenuItem>
         </div>
       </Menu>
-      {balanceModal && <PurchaseTime onChildValue={handleChildValue} />}
+      {balanceModal && <PurchaseTimeModal onValueChange={handleValueChange} />}
     </div>
   );
 }

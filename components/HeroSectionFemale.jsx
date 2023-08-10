@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from "react";
-import CustomDropdown from "@/components/CustomDropdown";
-import AccountDropdown from "@/components/AccountDropdown";
-import BalanceDropDown from "@/components/BalanceDropDown";
+import CustomDropdown from "./CustomDropdown";
+import AccountDropdown from "./AccountDropdown";
+import BalanceDropDown from "./BalanceDropDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
+import SettingsModal from "./SettingsModal";
+import SupportModal from "./SupportModal";
+import SignUpModal from "./SignUpModal";
+import ClockBalanceDropDown from "./ClockModal";
+import AuthChatting from "./AuthChatting";
+import SelectInputForm from "./SelectInputForm";
+// import SignupLogin from "./SignupLogin";
+import IframeComponent from "./IFrame";
+import SignupLoginFemale from "./SignupLoginFemale";
+import SignupFemale from "./SignupFemale";
+import ForgotPasswordModal from "./ForgotPasswordModal";
+import SignupSuccessModal from "./SignUpSuccessModal";
+import AccountDetailsModal from "./AccountDetailsModal";
+import UserName from "./UserName";
+import EmailModal from "./EmailModal";
 
-import SettingsModal from "@/components/SettingsModal";
-
-import SupportModal from "@/components/SupportModal";
-import SignUpModal from "@/components/SignUpModal";
-import ClockBalanceDropDown from "@/components/ClockModal";
-import AuthChatting from "@/components/AuthChatting";
-import SelectInputForm from "@/components/SelectInputForm";
-import SignupLogin from "@/components/SignupLogin";
-import IframeComponent from "@/components/IFrame";
-import SignupLoginFemale from "@/components/SignupLoginFemale";
-import SignupFemale from "@/components/SignupFemale";
-import ForgotPasswordModal from "@/components/ForgotPasswordModal";
-import SignupSuccessModal from "@/components/SignUpSuccessModal";
-
-export default function Herosection() {
+export default function HerosectionFemale() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showSignLogModal, setShowSignLogModal] = useState(false);
@@ -30,10 +31,14 @@ export default function Herosection() {
   const [showSettings, setShowSettings] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showSignupSuccess, setShowSignupSuccess] = useState(false);
+  const [showAccountDetails, setShowAccountDetails] = useState(false);
   const [login, setLogin] = useState(false);
   const [signup, setSignup] = useState(false);
   const [loginF, setLoginF] = useState(false);
   const [signupF, setSignupF] = useState(false);
+  const [username, setUsername] = useState(false);
+  const [email, setEmail] = useState(false);
+  const [password, setPassword] = useState(false);
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -70,6 +75,13 @@ export default function Herosection() {
 
     setShowFemaleLogin(true);
     setIsOpen(false);
+  };
+  const handleSignupF = () => {
+    // setLoginF(true);
+    setShowSignupFemale(true);
+
+    // setShowFemaleLogin(true);
+    // setIsOpen(false);
   };
   const handleSignUp = () => {
     setLogin(false);
@@ -119,13 +131,37 @@ export default function Herosection() {
   const handleCloseSuccessSignup = (value) => {
     setShowSignupSuccess(value);
   };
+  const handleValueProfileInfo = (value) => {
+    setShowAccountDetails(value);
+    setIsOpen(false);
+  };
+  const handleAccountDetailsChange = (value) => {
+    setShowAccountDetails(value);
+  };
 
+  const handleUserChange = (value) => {
+    // setShowAccountDetails(value);
+    // username = value;
+    // console.log(username);
+    setUsername(value);
+  };
+  const handleMailChange = (value) => {
+    setEmail(value);
+  };
+  const handlePasswordChange = (value) => {
+    setShowForgotModal(value);
+  };
+  const handleUsernameChange = (value) => {
+    setUsername(value);
+  };
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
   return (
     <section
       className="view-page md:mb-10 text-center md:pb-12 md:pt-12"
       id="element1"
     >
-
       <h4 className=" text-4xl text-black mb-10 hidden md:block">
         Uk<span className="font-semibold">Crush</span>
       </h4>
@@ -151,19 +187,19 @@ export default function Herosection() {
                   <nav className="md:hidden bg-white text-black side-bar">
                     <SelectInputForm />
 
-                    <button
+                    {/* <button
                       onClick={handleLogin}
                       className="block border-b-2 py-2 md:border-0 w-full"
                     >
                       Login
-                    </button>
+                    </button> */}
 
-                    <button
+                    {/* <button
                       onClick={handleSignUp}
                       className="block border-b-2 py-2 md:border-0 w-full"
                     >
                       SignUp
-                    </button>
+                    </button> */}
                     <button
                       onClick={handleLoginF}
                       className="block border-b-2 py-2 md:border-0 w-full"
@@ -187,6 +223,7 @@ export default function Herosection() {
                       <AccountDropdown
                         anchorEl={anchorEl}
                         onClose={handleDropdownClose}
+                        onValueProfileInfo={handleValueProfileInfo}
                       />
                     </div>
                     <div className="py-3 border-b-2">
@@ -210,7 +247,7 @@ export default function Herosection() {
                 <path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z" />
               </svg>
             </button>
-            <button onClick={handleLogin}>
+            <button onClick={handleLoginF}>
               <FontAwesomeIcon icon={faUser} className="f-icon" />
             </button>
             <ClockBalanceDropDown />
@@ -223,7 +260,7 @@ export default function Herosection() {
       {showSupportModal && (
         <SupportModal onValueSupportChange={handleSupportChange} />
       )}
-      {showSignLogModal && (
+      {/* {showSignLogModal && (
         <SignupLogin
           log={login}
           sign={signup}
@@ -231,19 +268,31 @@ export default function Herosection() {
           onValueForgotChange={handleForgotChange}
           onValueSignupSuccessChange={handleSignupSuccessChange}
         />
-      )}
+      )} */}
       {showFemaleLogin && (
         <SignupLoginFemale
           logF={loginF}
           signF={signupF}
           onValueFemaleSignChange={handleFemaleValueChange}
           onValueFemaleSignupChanged={handleFemaleValueChangePopup}
+          onValueForgotChange={handleForgotChange}
+        />
+      )}
+
+      {showSignupModal && <SignUpModal onClosedChange={handleClosedChange} />}
+      {showAccountDetails && (
+        <AccountDetailsModal
+          onValueAccDetailsChange={handleAccountDetailsChange}
+          onvalueUserChange={handleUserChange}
+          onValueMailChange={handleMailChange}
+          onValuePasswordChange={handlePasswordChange}
         />
       )}
       {showForgotModal && (
         <ForgotPasswordModal onValueForgotClose={handleValueForgotClose} />
       )}
-      {showSignupModal && <SignUpModal onClosedChange={handleClosedChange} />}
+      {username && <UserName onValueUsernameChange={handleUsernameChange} />}
+      {email && <EmailModal onValueEmailChange={handleEmailChange} />}
       <div className="card-view rounded-lg shadow-xl md:pb-36 overflow-hidden w-100 md:w-75">
         <nav className="hidden md:block bg-white text-black py-5 px-10 mb-20">
           <div className="flex">
@@ -266,27 +315,34 @@ export default function Herosection() {
               >
                 Settings
               </button>
-              <button
+              {/* <button
                 onClick={handleLogin}
                 className="block border-b-2 py-2 md:border-0 w-full"
               >
                 Login
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 onClick={handleSignUp}
                 className="block border-b-2 py-2 md:border-0 w-full"
               >
                 SignUp
-              </button>
+              </button> */}
               <button
                 onClick={handleLoginF}
                 className="block border-b-2 py-2 md:border-0 w-full"
               >
                 LoginF
               </button>
+              <button
+                onClick={handleSignupF}
+                className="block border-b-2 py-2 md:border-0 w-full"
+              >
+                Signup
+              </button>
               <AccountDropdown
                 anchorEl={anchorEl}
                 onClose={handleDropdownClose}
+                onValueProfileInfo={handleValueProfileInfo}
               />
               <BalanceDropDown />
             </div>

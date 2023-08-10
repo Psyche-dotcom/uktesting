@@ -1,1 +1,123 @@
 // This file is use for static data for connecting to live data (Api)
+export const blogData = [
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+  {
+    imageUrl: "/asset/hot-babeC.jpg",
+    curDate: new Date(),
+    title: "The 2023 LuckyCrush Photo Contest",
+    id: 1,
+  },
+];
