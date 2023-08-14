@@ -84,7 +84,9 @@ const AccountDetailsModal = ({
               Note: Your username is the only information other users can see.
               All other information is strictly confidential.
             </p>
-            <button className="btn-custom">Delete my account</button>
+            <button className="btn-custom" onClick={handleDelete}>
+              Delete my account
+            </button>
           </div>
         </div>
       </div>

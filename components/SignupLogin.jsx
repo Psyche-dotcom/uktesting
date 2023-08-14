@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { postData } from "@/service/apiCalls/Fetcher";
@@ -6,7 +7,6 @@ import { postData } from "@/service/apiCalls/Fetcher";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import CustomModal from "./CustomModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -22,6 +22,7 @@ export default function SignupLogin({
   const successChange = true;
   const [login, setLogin] = useState(log);
   const [signup, setSignup] = useState(sign);
+
   //Signup form initial values
 
   const initialSignupValues = {
@@ -35,7 +36,6 @@ export default function SignupLogin({
     password: "",
     confirmPassword: "",
     gender: 0,
-    // agreement: false,
   };
   //Signup form scheme
 
@@ -45,7 +45,6 @@ export default function SignupLogin({
     location: Yup.string().required("Location is required"),
     age: Number(Yup.string().required("Username is required")),
     phoneNumber: Yup.string().required("Phonenumber is required"),
-    // gender: Yup.string().required("Gender is required"),
 
     email: Yup.string()
       .email("Invalid email format")
@@ -57,13 +56,7 @@ export default function SignupLogin({
     confirmPassword: Yup.string()
       .required("Confirm password is required")
       .oneOf([Yup.ref("password"), null], "Passwords must match"),
-    // agreement: Yup.boolean().oneOf(
-    //   [true],
-    //   "You must agree to the terms and conditions"
-    // ),
   });
-
-  //Login form initial values
 
   const initialLoginValues = {
     email: "",
@@ -106,49 +99,32 @@ export default function SignupLogin({
   const handleSignupSubmit = async (values) => {
     try {
       const url = "https://ukcrushreal.onrender.com/api/user/register";
-      console.log(values.email);
-      console.log(values.userName);
-      console.log(values.password);
-      console.log(values.confirmPassword);
-      console.log(values.firstName);
-      console.log(values.lastName);
-      console.log(values.location);
-      console.log(values.age);
-      console.log(values.phoneNumber);
-      console.log(values.gender);
-      console.log(typeof values);
-
-      // Use the postData function to make the POST request
       const response = await postData(url, values);
-
-      // Handle the response if needed
       console.log("POST request successful:", response);
-
       onValueSignChange(value);
       onValueSignupSuccessChange(successChange);
     } catch (error) {
-      // Handle errors
       console.error("Error making POST request:", error);
     }
   };
-
+  const router = useRouter();
   const handleLoginSubmit = async (values) => {
     try {
       const url = "https://ukcrushreal.onrender.com/api/user/login";
-      console.log(values.email);
-      console.log(values.password);
-
-      // Use the postData function to make the POST request
       const response = await postData(url, values);
+      console.log(response.statusCode === 200);
+      if (response.statusCode === 200) {
+        const token = response.result;
+        localStorage.setItem("token", token);
 
-      // Handle the response if needed
-      console.log("POST request successful:", response);
-
-      onValueSignChange(value);
+        onValueSignChange(value);
+      } else {
+        console.error("Login failed");
+      }
     } catch (error) {
-      // Handle errors
       console.error("Error making POST request:", error);
     }
+    window.location.reload();
   };
   return (
     <div className=" border-b-2 py-2 md:border-0">
@@ -330,21 +306,6 @@ export default function SignupLogin({
                       </div>
 
                       <div className="mb-5 flex items-center">
-                        {/* <div
-                          style={{ width: "40px" }}
-                          className="mr-4 self-center"
-                        >
-                          <Field
-                            type="checkbox"
-                            className="accept"
-                            name="agreement"
-                          />
-                          <ErrorMessage
-                            name="agreement"
-                            component="span"
-                            style={{ color: "red", display: "block" }}
-                          />
-                        </div> */}
                         <p>
                           I am over 18 years old and I accept the{" "}
                           <Link

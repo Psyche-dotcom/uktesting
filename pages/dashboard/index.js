@@ -2,8 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import DashboardMain from "@/components/DashboardMain";
-import DashboardNavbar from "@/components/DashboardNavbar";
-import DashboardSidebar from "@/components/DashboardSidebar";
+
 import { Children, useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
 

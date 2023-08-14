@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import useSWR from "swr";
 import CustomDropdown from "./CustomDropdown";
 import AccountDropdown from "./AccountDropdown";
 import BalanceDropDown from "./BalanceDropDown";
@@ -21,6 +22,17 @@ import UserName from "./UserName";
 import EmailModal from "./EmailModal";
 
 export default function HerosectionFemale() {
+  // const token = localStorage.getItem("token");
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    setToken(localToken);
+  }, []);
+
+  const { data, error, revalidate } = useSWR(["authenticatedDataUrl", token]);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!token);
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showSignLogModal, setShowSignLogModal] = useState(false);
@@ -140,9 +152,6 @@ export default function HerosectionFemale() {
   };
 
   const handleUserChange = (value) => {
-    // setShowAccountDetails(value);
-    // username = value;
-    // console.log(username);
     setUsername(value);
   };
   const handleMailChange = (value) => {
@@ -186,26 +195,22 @@ export default function HerosectionFemale() {
                 >
                   <nav className="md:hidden bg-white text-black side-bar">
                     <SelectInputForm />
-
-                    {/* <button
-                      onClick={handleLogin}
-                      className="block border-b-2 py-2 md:border-0 w-full"
-                    >
-                      Login
-                    </button> */}
-
-                    {/* <button
-                      onClick={handleSignUp}
-                      className="block border-b-2 py-2 md:border-0 w-full"
-                    >
-                      SignUp
-                    </button> */}
-                    <button
-                      onClick={handleLoginF}
-                      className="block border-b-2 py-2 md:border-0 w-full"
-                    >
-                      LoginF
-                    </button>
+                    {!token && (
+                      <button
+                        onClick={handleLoginF}
+                        className="block border-b-2 py-2 md:border-0 w-full"
+                      >
+                        Login
+                      </button>
+                    )}
+                    {!token && (
+                      <button
+                        onClick={handleSignupF}
+                        className="block border-b-2 py-2 md:border-0 w-full"
+                      >
+                        Signup
+                      </button>
+                    )}
                     <button
                       onClick={openSettings}
                       className="border-b-2 py-2 md:border-0"
@@ -218,17 +223,20 @@ export default function HerosectionFemale() {
                     >
                       Support
                     </button>
-
-                    <div className="py-3 border-b-2">
-                      <AccountDropdown
-                        anchorEl={anchorEl}
-                        onClose={handleDropdownClose}
-                        onValueProfileInfo={handleValueProfileInfo}
-                      />
-                    </div>
-                    <div className="py-3 border-b-2">
-                      <BalanceDropDown className="py-3 border-b-2" />
-                    </div>
+                    {token && (
+                      <div className="py-3 border-b-2">
+                        <AccountDropdown
+                          anchorEl={anchorEl}
+                          onClose={handleDropdownClose}
+                          onValueProfileInfo={handleValueProfileInfo}
+                        />
+                      </div>
+                    )}
+                    {token && (
+                      <div className="py-3 border-b-2">
+                        <BalanceDropDown className="py-3 border-b-2" />
+                      </div>
+                    )}
                   </nav>
                 </div>
               </div>
@@ -250,7 +258,7 @@ export default function HerosectionFemale() {
             <button onClick={handleLoginF}>
               <FontAwesomeIcon icon={faUser} className="f-icon" />
             </button>
-            <ClockBalanceDropDown />
+            {token && <ClockBalanceDropDown />}
           </ul>
         </nav>
       </div>
@@ -260,15 +268,7 @@ export default function HerosectionFemale() {
       {showSupportModal && (
         <SupportModal onValueSupportChange={handleSupportChange} />
       )}
-      {/* {showSignLogModal && (
-        <SignupLogin
-          log={login}
-          sign={signup}
-          onValueSignChange={handleValueChange}
-          onValueForgotChange={handleForgotChange}
-          onValueSignupSuccessChange={handleSignupSuccessChange}
-        />
-      )} */}
+
       {showFemaleLogin && (
         <SignupLoginFemale
           logF={loginF}
@@ -315,36 +315,30 @@ export default function HerosectionFemale() {
               >
                 Settings
               </button>
-              {/* <button
-                onClick={handleLogin}
-                className="block border-b-2 py-2 md:border-0 w-full"
-              >
-                Login
-              </button> */}
-              {/* <button
-                onClick={handleSignUp}
-                className="block border-b-2 py-2 md:border-0 w-full"
-              >
-                SignUp
-              </button> */}
-              <button
-                onClick={handleLoginF}
-                className="block border-b-2 py-2 md:border-0 w-full"
-              >
-                LoginF
-              </button>
-              <button
-                onClick={handleSignupF}
-                className="block border-b-2 py-2 md:border-0 w-full"
-              >
-                Signup
-              </button>
-              <AccountDropdown
-                anchorEl={anchorEl}
-                onClose={handleDropdownClose}
-                onValueProfileInfo={handleValueProfileInfo}
-              />
-              <BalanceDropDown />
+              {!token && (
+                <button
+                  onClick={handleLoginF}
+                  className="block border-b-2 py-2 md:border-0 w-full"
+                >
+                  Login
+                </button>
+              )}
+              {!token && (
+                <button
+                  onClick={handleSignupF}
+                  className="block border-b-2 py-2 md:border-0 w-full"
+                >
+                  Signup
+                </button>
+              )}
+              {token && (
+                <AccountDropdown
+                  anchorEl={anchorEl}
+                  onClose={handleDropdownClose}
+                  onValueProfileInfo={handleValueProfileInfo}
+                />
+              )}
+              {token && <BalanceDropDown />}
             </div>
           </div>
         </nav>
@@ -377,11 +371,7 @@ export default function HerosectionFemale() {
         <h6 className="text-semibold text-xl mb-4">
           1 million members from 100+ countries!
         </h6>
-
-        <button onClick={openSignupModal} className="btn-custom">
-          Start chatting
-        </button>
-        <AuthChatting />
+        {token && <AuthChatting />}
         <p>You will be asked to activate your camera</p>
       </div>
     </section>

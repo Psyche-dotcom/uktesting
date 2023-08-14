@@ -3,10 +3,16 @@ import DashboardLayout from "@/components/DashboardLayout";
 import Image from "next/image";
 
 const CamManage = () => {
+  function handleEdit(id) {
+    console.log("Edit id:", id);
+  }
   function handleDelete(id) {
     console.log("Delete id:", id);
   }
   function handleSuspend(id) {
+    console.log("Suspend id:", id);
+  }
+  function handleView(id) {
     console.log("Suspend id:", id);
   }
   return (
@@ -41,6 +47,17 @@ const CamManage = () => {
                   <td className="flex items-center gap-2">
                     <button
                       className="icon"
+                      onClick={() => handleEdit(user.id)}
+                    >
+                      <Image
+                        src="/asset/pencil.png"
+                        height={16}
+                        width={16}
+                        alt="Edit icon"
+                      />
+                    </button>
+                    <button
+                      className="icon"
                       onClick={() => handleDelete(user.id)}
                     >
                       <Image
@@ -56,6 +73,17 @@ const CamManage = () => {
                     >
                       <Image
                         src="/asset/suspend.png"
+                        height={16}
+                        width={16}
+                        alt="Suspend icon"
+                      />
+                    </button>
+                    <button
+                      className="icon"
+                      onClick={() => handleView(user.id)}
+                    >
+                      <Image
+                        src="/asset/detail.png"
                         height={16}
                         width={16}
                         alt="Suspend icon"

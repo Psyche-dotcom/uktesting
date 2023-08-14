@@ -156,21 +156,15 @@ export default function SignupLoginFemale({
   // Handle login form submit
   const handleLoginSubmit = async (values) => {
     try {
-      const url = "https://example.com/api/login"; // Replace with your login API endpoint
+      const url = "https://ukcrushreal.onrender.com/api/user/login";
       console.log(values.email);
       console.log(values.password);
-
-      // Use the postData function to make the POST request
-      // const response = await postData(url, values);
-
-      // Handle the response if needed
-      // console.log('POST request successful:', response);
-
+      const response = await postData(url, values);
+      console.log("POST request successful:", response);
       const value = false;
       onValueFemaleSignChange(value);
     } catch (error) {
-      // Handle errors
-      // console.error('Error making POST request:', error);
+      console.error("Error making POST request:", error);
     }
   };
 

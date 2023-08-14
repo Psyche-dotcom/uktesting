@@ -19,18 +19,15 @@ const SignupFemale = ({ onValueCloseSignChange }) => {
     phoneNumber: "",
     password: "",
     confirmPassword: "",
-    gender: "female",
-    agreement: false,
+    gender: 1,
   };
 
   const validationSchema = Yup.object({
     firstName: Yup.string().required("Firstname is required"),
     lastName: Yup.string().required("Lastname is required"),
     location: Yup.string().required("Location is required"),
-
+    age: Number(Yup.string().required("Username is required")),
     phoneNumber: Yup.string().required("Phonenumber is required"),
-    // gender: Yup.string().required("Gender is required"),
-
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
@@ -41,27 +38,19 @@ const SignupFemale = ({ onValueCloseSignChange }) => {
     confirmPassword: Yup.string()
       .required("Confirm password is required")
       .oneOf([Yup.ref("password"), null], "Passwords must match"),
-    agreement: Yup.boolean().oneOf(
-      [true],
-      "You must agree to the terms and conditions"
-    ),
   });
 
   const handleSubmit = async (values) => {
     try {
-      // const url = "https://example.com/api/users";
+      const url = "https://ukcrushreal.onrender.com/api/user/register";
       console.log(values.name);
       console.log(values.email);
       console.log(values.password);
+      const response = await postData(url, values);
+      console.log("POST request successful:", response);
       onValueCloseSignChange(value);
-      // Use the postData function to make the POST request
-      // const response = await postData(url, values);
-
-      // Handle the response if needed
-      // console.log('POST request successful:', response);
     } catch (error) {
-      // Handle errors
-      // console.error('Error making POST request:', error);
+      console.error("Error making POST request:", error);
     }
   };
 
@@ -246,18 +235,6 @@ const SignupFemale = ({ onValueCloseSignChange }) => {
                 />
               </div>
               <div className="mb-5 flex gap-4">
-                <div>
-                  <Field
-                    type="checkbox"
-                    className="accept w-1/4"
-                    name="agreement"
-                  />
-                  <ErrorMessage
-                    name="agreement"
-                    component="span"
-                    style={{ color: "red", display: "block" }}
-                  />
-                </div>
                 <p>
                   I am over 18 years old and I accept the{" "}
                   <button className="text-pink ml-auto">

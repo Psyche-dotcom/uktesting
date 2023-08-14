@@ -1,29 +1,27 @@
 import React from "react";
 import { Button, Menu, MenuItem } from "@mui/material";
-import CustomModal from "./CustomModal";
 import { useState } from "react";
-import Link from "next/link";
-import SettingsModal from "./SettingsModal";
-import AccountDetailsModal from "./AccountDetailsModal";
+import useSWR from "swr";
 
 function AccountDropdown({ onClose, onValueProfileInfo }) {
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const { data, error, revalidate } = useSWR(["authenticatedDataUrl", token]);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const value = true;
   const openModal = () => {
     setAnchorEl(null);
     onValueProfileInfo(value);
   };
-  // const closeModal = () => {
-  //   setIsOpen(false);
-  //   onClose();
-  // };
+
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
     onClose();
+    localStorage.removeItem("token");
+    setToken(null);
   };
 
   return (

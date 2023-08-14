@@ -19,7 +19,7 @@ const DashboardNavbar = () => {
         </div>
         <div className="flex gap-4">
           <Link
-            href="/Invite"
+            href="/dashboard/register"
             className="flex gap-2 items-center rounded-md bg-white px-4 py-2"
           >
             <Image

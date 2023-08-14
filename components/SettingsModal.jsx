@@ -1,13 +1,22 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
+
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const SettingsModal = ({ onChangeSettingModal }) => {
+  const router = useRouter();
+
   const closeModal = () => {
     const value = false;
     onChangeSettingModal(value);
   };
+
+  function handleHome() {
+    localStorage.removeItem("gender");
+    window.location.reload();
+  }
 
   return (
     <div className=" border-b-2 py-2 md:border-0">
@@ -18,11 +27,11 @@ const SettingsModal = ({ onChangeSettingModal }) => {
             <p className="text-gray-700 mb-8">
               On LuckyCrush, men are connected with random women, and women with
               random men. This visitor account is a{" "}
-              <span className="font-bold">male</span>
+              <span className="font-bold">male </span>
               visitor account. Was it a mistake?{" "}
-              <Link href="/" className="text-pink underline">
+              <button className="text-pink underline" onClick={handleHome}>
                 Click here{" "}
-              </Link>
+              </button>
               to log out and reset your gender settings.
             </p>
             <button

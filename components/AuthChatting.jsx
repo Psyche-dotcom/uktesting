@@ -21,7 +21,7 @@ const AuthChatting = () => {
         onClick={openModal}
         className="rounded-md bg-pink text-white font-extrabold py-4 px-10 mb-4"
       >
-        Start chatting Auth
+        Start chatting
       </button>
       {isOpen && <PurchaseTimeModal onValueChange={handleValueChange} />}
     </div>

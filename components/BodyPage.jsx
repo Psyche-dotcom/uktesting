@@ -46,7 +46,7 @@ export default function BodyPage() {
             might not always speak the same language as your partner. No
             problem! Our instant translation system automatically translates
             incoming messages into your language and outgoing messages into your
-            partner&rsquo;s language. You won&rsquo;t even realize that your
+            partner&apos;s language. You won&apos;t even realize that your
             partner is on the other side of the world.
           </h5>
         </div>

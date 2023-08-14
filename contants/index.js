@@ -121,3 +121,31 @@ export const blogData = [
     id: 1,
   },
 ];
+
+export const dummyData = [
+  {
+    name: "John Doe",
+    imagePath: "/asset/hot-babeC.jpg",
+    id: 1,
+  },
+  {
+    name: "John Doe",
+    imagePath: "/asset/hot-babeC.jpg",
+    id: 2,
+  },
+  {
+    name: "John Doe",
+    imagePath: "/asset/hot-babeC.jpg",
+    id: 3,
+  },
+  {
+    name: "John Doe",
+    imagePath: "/asset/hot-babeC.jpg",
+    id: 4,
+  },
+  {
+    name: "John Doe",
+    imagePath: "/asset/hot-babeC.jpg",
+    id: 5,
+  },
+];
