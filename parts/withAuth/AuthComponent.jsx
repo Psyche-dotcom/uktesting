@@ -1,51 +1,32 @@
 import React, { useState, useEffect } from "react";
 import useSWR from "swr";
-import CustomDropdown from "./CustomDropdown";
-import AccountDropdown from "./AccountDropdown";
-import BalanceDropDown from "./BalanceDropDown";
+import CustomDropdown from "@/components/CustomDropdown";
+import AccountDropdown from "@/components/AccountDropdown";
+import BalanceDropDown from "@/components/BalanceDropDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
-import SettingsModal from "./SettingsModal";
-import SupportModal from "./SupportModal";
-import SignUpModal from "./SignUpModal";
-import ClockBalanceDropDown from "./ClockModal";
-import AuthChatting from "./AuthChatting";
-import SelectInputForm from "./SelectInputForm";
-import IframeComponent from "./IFrame";
-import SignupLoginFemale from "./SignupLoginFemale";
-import SignupFemale from "./SignupFemale";
-import ForgotPasswordModal from "./ForgotPasswordModal";
-import SignupSuccessModal from "./SignUpSuccessModal";
-import AccountDetailsModal from "./AccountDetailsModal";
-import UserName from "./UserName";
-import EmailModal from "./EmailModal";
-import SignupLogin from "./SignupLogin";
+import SettingsModal from "@/components/SettingsModal";
+import SupportModal from "@/components/SupportModal";
+import ClockBalanceDropDown from "@/components/ClockModal";
+import AuthChatting from "@/components/AuthChatting";
+import SelectInputForm from "@/components/SelectInputForm";
+import IframeComponent from "@/components/IFrame";
+import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import SignupSuccessModal from "@/components/SignUpSuccessModal";
+import AccountDetailsModal from "@/components/AccountDetailsModal";
+import UserName from "@/components/UserName";
+import EmailModal from "@/components/EmailModal";
 
-export default function HerosectionMale() {
-  // const token = localStorage.getItem("token");
-  const [token, setToken] = useState(null);
-
-  useEffect(() => {
-    const localToken = localStorage.getItem("token");
-
-    setToken(localToken);
-  }, []);
-
+export default function AuthComponent() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [showSignLogModal, setShowSignLogModal] = useState(false);
-  const [showFemaleLogin, setShowFemaleLogin] = useState(false);
-  const [showSignupFemale, setShowSignupFemale] = useState(false);
+
   const [showSupportModal, setShowSupportModal] = useState(false);
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showSignupSuccess, setShowSignupSuccess] = useState(false);
   const [showAccountDetails, setShowAccountDetails] = useState(false);
-  const [login, setLogin] = useState(false);
-  const [signup, setSignup] = useState(false);
-  const [loginF, setLoginF] = useState(false);
-  const [signupF, setSignupF] = useState(false);
   const [username, setUsername] = useState(false);
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
@@ -70,30 +51,6 @@ export default function HerosectionMale() {
   };
   const openSupportModal = () => {
     setShowSupportModal(true);
-    setIsOpen(false);
-  };
-  const handleLogin = () => {
-    setLogin(true);
-    setSignup(false);
-
-    setShowSignLogModal(true);
-    setIsOpen(false);
-  };
-  const handleLoginF = () => {
-    setLoginF(true);
-    setSignupF(false);
-
-    setShowFemaleLogin(true);
-    setIsOpen(false);
-  };
-  const handleSignupF = () => {
-    setShowSignupFemale(true);
-  };
-  const handleSignUp = () => {
-    setLogin(false);
-    setSignup(true);
-
-    setShowSignLogModal(true);
     setIsOpen(false);
   };
 
@@ -189,49 +146,31 @@ export default function HerosectionMale() {
                 >
                   <nav className="md:hidden bg-white text-black side-bar">
                     <SelectInputForm />
-                    {!token && (
-                      <button
-                        onClick={handleLogin}
-                        className="block border-b-2 py-2 md:border-0 w-full"
-                      >
-                        Login
-                      </button>
-                    )}
-                    {!token && (
-                      <button
-                        onClick={handleSignUp}
-                        className="block border-b-2 py-2 md:border-0 w-full"
-                      >
-                        SignUp
-                      </button>
-                    )}
 
-                    <button
+                    {/* <button
                       onClick={openSettings}
                       className="border-b-2 py-2 md:border-0"
                     >
                       Settings
-                    </button>
+                    </button> */}
                     <button
                       onClick={openSupportModal}
                       className=" border-b-2 py-2 md:border-0"
                     >
                       Support
                     </button>
-                    {token && (
-                      <div className="py-3 border-b-2">
-                        <AccountDropdown
-                          anchorEl={anchorEl}
-                          onClose={handleDropdownClose}
-                          onValueProfileInfo={handleValueProfileInfo}
-                        />
-                      </div>
-                    )}
-                    {token && (
-                      <div className="py-3 border-b-2">
-                        <BalanceDropDown className="py-3 border-b-2" />
-                      </div>
-                    )}
+
+                    <div className="py-3 border-b-2">
+                      <AccountDropdown
+                        anchorEl={anchorEl}
+                        onClose={handleDropdownClose}
+                        onValueProfileInfo={handleValueProfileInfo}
+                      />
+                    </div>
+
+                    <div className="py-3 border-b-2">
+                      <BalanceDropDown className="py-3 border-b-2" />
+                    </div>
                   </nav>
                 </div>
               </div>
@@ -250,12 +189,8 @@ export default function HerosectionMale() {
                 <path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z" />
               </svg>
             </button>
-            {!token && (
-              <button onClick={handleLogin}>
-                <FontAwesomeIcon icon={faUser} className="f-icon" />
-              </button>
-            )}
-            {token && <ClockBalanceDropDown />}
+
+            <ClockBalanceDropDown />
           </ul>
         </nav>
       </div>
@@ -264,15 +199,6 @@ export default function HerosectionMale() {
       )}
       {showSupportModal && (
         <SupportModal onValueSupportChange={handleSupportChange} />
-      )}
-      {showSignLogModal && (
-        <SignupLogin
-          log={login}
-          sign={signup}
-          onValueSignChange={handleValueChange}
-          onValueForgotChange={handleForgotChange}
-          onValueSignupSuccessChange={handleSignupSuccessChange}
-        />
       )}
 
       {showSignupModal && <SignUpModal onClosedChange={handleClosedChange} />}
@@ -305,37 +231,20 @@ export default function HerosectionMale() {
               />
             </div>
             <div className="flex gap-3 items-center">
-              <button
+              {/* <button
                 onClick={openSettings}
                 className="border-b-2 py-2 md:border-0"
               >
                 Settings
-              </button>
-              {!token && (
-                <button
-                  onClick={handleLogin}
-                  className="block border-b-2 py-2 md:border-0 w-full"
-                >
-                  Login
-                </button>
-              )}
-              {!token && (
-                <button
-                  onClick={handleSignUp}
-                  className="block border-b-2 py-2 md:border-0 w-full"
-                >
-                  SignUp
-                </button>
-              )}
+              </button> */}
 
-              {token && (
-                <AccountDropdown
-                  anchorEl={anchorEl}
-                  onClose={handleDropdownClose}
-                  onValueProfileInfo={handleValueProfileInfo}
-                />
-              )}
-              {token && <BalanceDropDown />}
+              <AccountDropdown
+                anchorEl={anchorEl}
+                onClose={handleDropdownClose}
+                onValueProfileInfo={handleValueProfileInfo}
+              />
+
+              <BalanceDropDown />
             </div>
           </div>
         </nav>
@@ -366,7 +275,7 @@ export default function HerosectionMale() {
         <h6 className="text-semibold text-xl mb-4">
           1 million members from 100+ countries!
         </h6>
-        {token && <AuthChatting />}
+        <AuthChatting />
         <p>You will be asked to activate your camera</p>
       </div>
     </section>

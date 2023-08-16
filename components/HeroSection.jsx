@@ -1,25 +1,46 @@
 import React, { useState, useEffect } from "react";
-import CustomDropdown from "@/components/CustomDropdown";
-import AccountDropdown from "@/components/AccountDropdown";
-import BalanceDropDown from "@/components/BalanceDropDown";
+import useSWR from "swr";
+import CustomDropdown from "./CustomDropdown";
+import AccountDropdown from "./AccountDropdown";
+import BalanceDropDown from "./BalanceDropDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
+import SettingsModal from "./SettingsModal";
+import SupportModal from "./SupportModal";
+import SignUpModal from "./SignUpModal";
+import ClockBalanceDropDown from "./ClockModal";
+import AuthChatting from "./AuthChatting";
+import SelectInputForm from "./SelectInputForm";
+import IframeComponent from "./IFrame";
+import SignupLoginFemale from "./SignupLoginFemale";
+import SignupFemale from "./SignupFemale";
+import ForgotPasswordModal from "./ForgotPasswordModal";
+import SignupSuccessModal from "./SignUpSuccessModal";
+import AccountDetailsModal from "./AccountDetailsModal";
+import UserName from "./UserName";
+import EmailModal from "./EmailModal";
+import SignupLogin from "./SignupLogin";
 
-import SettingsModal from "@/components/SettingsModal";
+export default function HeroSection() {
+  const [token, setToken] = useState(null);
+  const [gender, setGender] = useState(null);
 
-import SupportModal from "@/components/SupportModal";
-import SignUpModal from "@/components/SignUpModal";
-import ClockBalanceDropDown from "@/components/ClockModal";
-import AuthChatting from "@/components/AuthChatting";
-import SelectInputForm from "@/components/SelectInputForm";
-import SignupLogin from "@/components/SignupLogin";
-import IframeComponent from "@/components/IFrame";
-import SignupLoginFemale from "@/components/SignupLoginFemale";
-import SignupFemale from "@/components/SignupFemale";
-import ForgotPasswordModal from "@/components/ForgotPasswordModal";
-import SignupSuccessModal from "@/components/SignUpSuccessModal";
+  const [male, setMale] = useState(null);
+  const [female, setFemale] = useState(null);
 
-export default function Herosection() {
+  useEffect(() => {
+    const localGender = localStorage.getItem("gender");
+    setGender(localGender);
+    if (gender === "male") {
+      setMale(gender);
+      console.log(gender);
+    }
+    if (gender === "female") {
+      setFemale(gender);
+      console.log(gender);
+    }
+  }, [gender]);
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showSignLogModal, setShowSignLogModal] = useState(false);
@@ -30,10 +51,14 @@ export default function Herosection() {
   const [showSettings, setShowSettings] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showSignupSuccess, setShowSignupSuccess] = useState(false);
+  const [showAccountDetails, setShowAccountDetails] = useState(false);
   const [login, setLogin] = useState(false);
   const [signup, setSignup] = useState(false);
   const [loginF, setLoginF] = useState(false);
   const [signupF, setSignupF] = useState(false);
+  const [username, setUsername] = useState(false);
+  const [email, setEmail] = useState(false);
+  const [password, setPassword] = useState(false);
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -70,6 +95,9 @@ export default function Herosection() {
 
     setShowFemaleLogin(true);
     setIsOpen(false);
+  };
+  const handleSignupF = () => {
+    setShowSignupFemale(true);
   };
   const handleSignUp = () => {
     setLogin(false);
@@ -119,13 +147,34 @@ export default function Herosection() {
   const handleCloseSuccessSignup = (value) => {
     setShowSignupSuccess(value);
   };
+  const handleValueProfileInfo = (value) => {
+    setShowAccountDetails(value);
+    setIsOpen(false);
+  };
+  const handleAccountDetailsChange = (value) => {
+    setShowAccountDetails(value);
+  };
 
+  const handleUserChange = (value) => {
+    setUsername(value);
+  };
+  const handleMailChange = (value) => {
+    setEmail(value);
+  };
+  const handlePasswordChange = (value) => {
+    setShowForgotModal(value);
+  };
+  const handleUsernameChange = (value) => {
+    setUsername(value);
+  };
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
   return (
     <section
       className="view-page md:mb-10 text-center md:pb-12 md:pt-12"
       id="element1"
     >
-
       <h4 className=" text-4xl text-black mb-10 hidden md:block">
         Uk<span className="font-semibold">Crush</span>
       </h4>
@@ -150,26 +199,38 @@ export default function Herosection() {
                 >
                   <nav className="md:hidden bg-white text-black side-bar">
                     <SelectInputForm />
-
-                    <button
-                      onClick={handleLogin}
-                      className="block border-b-2 py-2 md:border-0 w-full"
-                    >
-                      Login
-                    </button>
-
-                    <button
-                      onClick={handleSignUp}
-                      className="block border-b-2 py-2 md:border-0 w-full"
-                    >
-                      SignUp
-                    </button>
-                    <button
-                      onClick={handleLoginF}
-                      className="block border-b-2 py-2 md:border-0 w-full"
-                    >
-                      LoginF
-                    </button>
+                    {female && (
+                      <button
+                        onClick={handleLoginF}
+                        className="block border-b-2 py-2 md:border-0 w-full"
+                      >
+                        Login
+                      </button>
+                    )}
+                    {female && (
+                      <button
+                        onClick={handleSignupF}
+                        className="block border-b-2 py-2 md:border-0 w-full"
+                      >
+                        Signup
+                      </button>
+                    )}
+                    {male && (
+                      <button
+                        onClick={handleLogin}
+                        className="block border-b-2 py-2 md:border-0 w-full"
+                      >
+                        Login
+                      </button>
+                    )}
+                    {male && (
+                      <button
+                        onClick={handleSignUp}
+                        className="block border-b-2 py-2 md:border-0 w-full"
+                      >
+                        SignUp
+                      </button>
+                    )}
                     <button
                       onClick={openSettings}
                       className="border-b-2 py-2 md:border-0"
@@ -182,16 +243,6 @@ export default function Herosection() {
                     >
                       Support
                     </button>
-
-                    <div className="py-3 border-b-2">
-                      <AccountDropdown
-                        anchorEl={anchorEl}
-                        onClose={handleDropdownClose}
-                      />
-                    </div>
-                    <div className="py-3 border-b-2">
-                      <BalanceDropDown className="py-3 border-b-2" />
-                    </div>
                   </nav>
                 </div>
               </div>
@@ -210,10 +261,16 @@ export default function Herosection() {
                 <path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z" />
               </svg>
             </button>
-            <button onClick={handleLogin}>
-              <FontAwesomeIcon icon={faUser} className="f-icon" />
-            </button>
-            <ClockBalanceDropDown />
+            {male && (
+              <button onClick={handleLogin}>
+                <FontAwesomeIcon icon={faUser} className="f-icon" />
+              </button>
+            )}
+            {female && (
+              <button onClick={handleLoginF}>
+                <FontAwesomeIcon icon={faUser} className="f-icon" />
+              </button>
+            )}
           </ul>
         </nav>
       </div>
@@ -232,18 +289,18 @@ export default function Herosection() {
           onValueSignupSuccessChange={handleSignupSuccessChange}
         />
       )}
+
+      {showSignupModal && <SignUpModal onClosedChange={handleClosedChange} />}
       {showFemaleLogin && (
         <SignupLoginFemale
           logF={loginF}
           signF={signupF}
           onValueFemaleSignChange={handleFemaleValueChange}
           onValueFemaleSignupChanged={handleFemaleValueChangePopup}
+          onValueForgotChange={handleForgotChange}
         />
       )}
-      {showForgotModal && (
-        <ForgotPasswordModal onValueForgotClose={handleValueForgotClose} />
-      )}
-      {showSignupModal && <SignUpModal onClosedChange={handleClosedChange} />}
+
       <div className="card-view rounded-lg shadow-xl md:pb-36 overflow-hidden w-100 md:w-75">
         <nav className="hidden md:block bg-white text-black py-5 px-10 mb-20">
           <div className="flex">
@@ -254,10 +311,6 @@ export default function Herosection() {
               >
                 Support
               </button>
-              <CustomDropdown
-                anchorEl={anchorEl}
-                onClose={handleDropdownClose}
-              />
             </div>
             <div className="flex gap-3 items-center">
               <button
@@ -266,35 +319,45 @@ export default function Herosection() {
               >
                 Settings
               </button>
-              <button
-                onClick={handleLogin}
-                className="block border-b-2 py-2 md:border-0 w-full"
-              >
-                Login
-              </button>
-              <button
-                onClick={handleSignUp}
-                className="block border-b-2 py-2 md:border-0 w-full"
-              >
-                SignUp
-              </button>
-              <button
-                onClick={handleLoginF}
-                className="block border-b-2 py-2 md:border-0 w-full"
-              >
-                LoginF
-              </button>
-              <AccountDropdown
-                anchorEl={anchorEl}
-                onClose={handleDropdownClose}
-              />
-              <BalanceDropDown />
+              {female && (
+                <button
+                  onClick={handleLoginF}
+                  className="block border-b-2 py-2 md:border-0 w-full"
+                >
+                  Login
+                </button>
+              )}
+              {female && (
+                <button
+                  onClick={handleSignupF}
+                  className="block border-b-2 py-2 md:border-0 w-full"
+                >
+                  Signup
+                </button>
+              )}
+              {male && (
+                <button
+                  onClick={handleLogin}
+                  className="block border-b-2 py-2 md:border-0 w-full"
+                >
+                  Login
+                </button>
+              )}
+              {male && (
+                <button
+                  onClick={handleSignUp}
+                  className="block border-b-2 py-2 md:border-0 w-full"
+                >
+                  SignUp
+                </button>
+              )}
             </div>
           </div>
         </nav>
         {showSignupFemale && (
           <SignupFemale onValueCloseSignChange={handleCloseSignChange} />
         )}
+
         {showSignupSuccess && (
           <SignupSuccessModal
             onValueCloseSuccessSignup={handleCloseSuccessSignup}
@@ -321,11 +384,22 @@ export default function Herosection() {
         <h6 className="text-semibold text-xl mb-4">
           1 million members from 100+ countries!
         </h6>
-
-        <button onClick={openSignupModal} className="btn-custom">
-          Start chatting
-        </button>
-        <AuthChatting />
+        {male && (
+          <button
+            onClick={handleLogin}
+            className="rounded-md bg-pink text-white font-extrabold py-4 px-10 mb-4"
+          >
+            Start chatting
+          </button>
+        )}
+        {female && (
+          <button
+            onClick={handleLoginF}
+            className="rounded-md bg-pink text-white font-extrabold py-4 px-10 mb-4"
+          >
+            Start chatting
+          </button>
+        )}
         <p>You will be asked to activate your camera</p>
       </div>
     </section>
