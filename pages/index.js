@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Footer from "@/parts/noAuth/Footer";
 import BodyPage from "@/components/BodyPage";
-import HerosectionMale from "@/components/HeroSectionMale";
-import HerosectionFemale from "@/components/HeroSectionFemale";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   const [isGender, setIsGender] = useState(null);
@@ -50,8 +49,7 @@ export default function Home() {
           </section>
         </div>
       )}
-      {isGender === "male" && <HerosectionMale />}
-      {isGender === "female" && <HerosectionFemale />}
+      {isGender && <HeroSection />}
 
       <div className="hidden md:block">
         <BodyPage />

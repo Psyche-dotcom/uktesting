@@ -81,7 +81,7 @@ const DashboardSidebar = () => {
             </Link>
           </li>
           <li>
-            <Link className="sidebar_icon" href="/dashboard/payments">
+            <Link className="sidebar_icon" href="/dashboard/payment">
               <div className="sidebar__icon">
                 <Image
                   src="/favicon_io/vimeo.svg"

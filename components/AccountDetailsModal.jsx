@@ -32,6 +32,7 @@ const AccountDetailsModal = ({
   const editPassword = () => {
     onValuePasswordChange(password);
   };
+  const handleDelete = () => {};
   // if (error) {
   //   return <div>Error: {error.message}</div>;
   // }

@@ -107,7 +107,6 @@ export default function SignupLogin({
       console.error("Error making POST request:", error);
     }
   };
-  const router = useRouter();
   const handleLoginSubmit = async (values) => {
     try {
       const url = "https://ukcrushreal.onrender.com/api/user/login";
@@ -124,7 +123,7 @@ export default function SignupLogin({
     } catch (error) {
       console.error("Error making POST request:", error);
     }
-    window.location.reload();
+    // window.location.reload();
   };
   return (
     <div className=" border-b-2 py-2 md:border-0">

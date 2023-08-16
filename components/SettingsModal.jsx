@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import Link from "next/link";
@@ -7,11 +7,16 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const SettingsModal = ({ onChangeSettingModal }) => {
   const router = useRouter();
+  const [isGender, setIsGender] = useState(null);
 
   const closeModal = () => {
     const value = false;
     onChangeSettingModal(value);
   };
+  useEffect(() => {
+    const localGender = localStorage.getItem("gender");
+    setIsGender(localGender);
+  }, []);
 
   function handleHome() {
     localStorage.removeItem("gender");
@@ -27,10 +32,10 @@ const SettingsModal = ({ onChangeSettingModal }) => {
             <p className="text-gray-700 mb-8">
               On LuckyCrush, men are connected with random women, and women with
               random men. This visitor account is a{" "}
-              <span className="font-bold">male </span>
+              <span className="font-bold">{isGender} </span>
               visitor account. Was it a mistake?{" "}
               <button className="text-pink underline" onClick={handleHome}>
-                Click here{" "}
+                Click here
               </button>
               to log out and reset your gender settings.
             </p>
